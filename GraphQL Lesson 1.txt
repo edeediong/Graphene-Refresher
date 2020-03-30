@@ -1,0 +1,80 @@
+GraphQL is strongly typed.
+{
+  allFilms {
+    films {
+	title
+    }
+  }
+}
+
+GraphQL Type Schema/System, Objecr vs Scalar Types, Arguments
+Object Type vs Scalar Type
+Object types can contain their own set of subfields generally speaking they have to be an object.
+Scalar types are built in graphql data types. There are five built in scalar type: integers, floats, strings, booleans and ids(unqiue strings)
+
+Mutations for Creating, Updating, Deleting in GraphQL
+GraphQL queries can accept values.
+We can read data we do the normal queries. But to write data or change data, we used a graphql operation called a Mutation.\
+
+In CRUD, queries cover the Read part, Create Update Delete is covered by Mutations.
+
+mutation {
+  createBaby(bodyInfo: { 	-- This is the create from the API
+    name:"Fred",
+    votes: 1
+  })  {
+     name
+     votes
+  }
+}
+
+mutation {
+  upVote(name: "Fred")  { 	-- This is to update the API
+   name
+   votes
+  }
+ }
+
+mutation {
+  remove(name: "Fred") {
+    name
+    votes
+  }
+ }
+
+
+Dynamic Values in Queries/Mutations with GraphQL Variables
+
+mutation ($name: String!, $vites: Int!) { 	-- The exclamation mark shows it's required
+  createBaby(bodyInfo: {
+    name:$name,
+    votes: $votes
+  })  {
+     name
+     votes
+  }
+}
+
+Intro to Graphene/GraphQL in Python
+
+To create a query, you first of all need a root query.
+When naming methods in GraphQL, the methods creation are called resolver. To name a resolver, it has to have resolve in it's name(just like tests&pytests)
+and must be written in snakecase(the methods name).
+Now when we're executing a schema in GraphQL, the names has to be in camelCase.
+But to override this behaviour, your schema needs another argument auto_camelcase set to False.
+
+We specified the subfields we wanted not just the main field.
+
+Also, learn to set arguments s optional because by defaults they're compulsory.
+
+To pass in arguments to a mutation, you need to pass in an inner Arguments class.
+Check out the differences between both codes and their default values
+
+Variables in Queries/Mutations
+
+Self and Info Values
+info values is used to get information that is oassed to the context object about our current user.
+Le's say we want to add to eeach of our users that's based off of a couple of our existing fields.
+Let's say we wantan avatar URL, a link that points to a picture of our user and we want it to be unique. As a result, we made it from a combination of username and id.
+self comes in here. It basically works like self so you have the class attributes in the method you define.
+
